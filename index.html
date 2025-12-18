@@ -1,248 +1,1020 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Micro-Internship Portal</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/style.css">
+
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <i class="fas fa-briefcase"></i>
-                <span>Micro-Internship Portal</span>
-            </div>
-            <div class="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#internships" class="nav-link">Internships</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#contact" class="nav-link">Contact</a>
-                <div class="nav-auth">
-                    <button class="btn btn-outline" onclick="showLogin()">Login</button>
-                    <button class="btn btn-primary" onclick="showRegister()">Register</button>
-                </div>
-            </div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Find Your Perfect Micro-Internship</h1>
-            <p>Gain hands-on experience with short-term projects from top companies and startups</p>
-            <div class="hero-buttons">
-                <button class="btn btn-primary btn-large" onclick="showRegister()">
-                    <i class="fas fa-user-plus"></i> Get Started
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="#"><i class="bi bi-briefcase-fill me-2"></i>Micro-Internship Portal</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                <button class="btn btn-outline btn-large" onclick="scrollToInternships()">
-                    <i class="fas fa-search"></i> Browse Internships
-                </button>
-            </div>
-        </div>
-        <div class="hero-image">
-            <i class="fas fa-laptop-code"></i>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h2>Why Choose Micro-Internships?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-clock"></i>
-                    <h3>Short-term Projects</h3>
-                    <p>Complete meaningful projects in days or weeks, not months</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-trophy"></i>
-                    <h3>Build Your Resume</h3>
-                    <p>Gain real experience and add impressive projects to your portfolio</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-users"></i>
-                    <h3>Connect with Employers</h3>
-                    <p>Network with companies and startups looking for talent like you</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-star"></i>
-                    <h3>Earn Recognition</h3>
-                    <p>Receive ratings and build your professional reputation</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Internships Section -->
-    <section id="internships" class="internships">
-        <div class="container">
-            <h2>Featured Internships</h2>
-            <div class="search-filters">
-                <div class="search-bar">
-                    <input type="text" id="searchInput" placeholder="Search internships...">
-                    <button class="btn btn-primary" onclick="searchInternships()">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-                <div class="filters">
-                    <select id="categoryFilter" onchange="filterInternships()">
-                        <option value="">All Categories</option>
-                        <option value="web-development">Web Development</option>
-                        <option value="mobile-development">Mobile Development</option>
-                        <option value="data-science">Data Science</option>
-                        <option value="design">Design</option>
-                        <option value="marketing">Marketing</option>
-                        <option value="content-writing">Content Writing</option>
-                    </select>
-                    <select id="durationFilter" onchange="filterInternships()">
-                        <option value="">Any Duration</option>
-                        <option value="1-week">1 Week</option>
-                        <option value="2-weeks">2 Weeks</option>
-                        <option value="1-month">1 Month</option>
-                        <option value="2-months">2 Months</option>
-                    </select>
-                </div>
-            </div>
-            <div class="internships-grid" id="internshipsGrid">
-                <!-- Internships will be dynamically loaded here -->
-            </div>
-            <div class="load-more">
-                <button class="btn btn-outline" onclick="loadMoreInternships()">Load More</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Statistics Section -->
-    <section class="statistics">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h3 class="stat-number" data-target="1000">0</h3>
-                    <p>Active Internships</p>
-                </div>
-                <div class="stat-card">
-                    <h3 class="stat-number" data-target="5000">0</h3>
-                    <p>Registered Users</p>
-                </div>
-                <div class="stat-card">
-                    <h3 class="stat-number" data-target="500">0</h3>
-                    <p>Partner Companies</p>
-                </div>
-                <div class="stat-card">
-                    <h3 class="stat-number" data-target="95">0</h3>
-                    <p>Success Rate %</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="container">
-            <h2>Success Stories</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"The micro-internship helped me gain real-world experience and land a full-time job!"</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="https://via.placeholder.com/50" alt="User">
-                        <div>
-                            <h4>Sarah Johnson</h4>
-                            <p>Web Developer</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"We found amazing talent through this platform. Highly recommend for quick project needs!"</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="https://via.placeholder.com/50" alt="User">
-                        <div>
-                            <h4>Michael Chen</h4>
-                            <p>Startup Founder</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"Great platform to build skills and earn while learning. Perfect for students!"</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="https://via.placeholder.com/50" alt="User">
-                        <div>
-                            <h4>Emily Davis</h4>
-                            <p>Computer Science Student</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Micro-Internship Portal</h3>
-                    <p>Connecting talent with opportunities through short-term, skill-based projects.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#internships">Internships</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>For Users</h4>
-                    <ul>
-                        <li><a href="#" onclick="showRegister()">Register</a></li>
-                        <li><a href="#" onclick="showLogin()">Login</a></li>
-                        <li><a href="#">Browse Internships</a></li>
-                        <li><a href="#">How It Works</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>For Employers</h4>
-                    <ul>
-                        <li><a href="#" onclick="showEmployerRegister()">Post Internship</a></li>
-                        <li><a href="#">Pricing</a></li>
-                        <li><a href="#">Employer Dashboard</a></li>
-                        <li><a href="#">Success Stories</a></li>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showPage('home')">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showPage('internships')">Internships</a>
+                        </li>
+                        <li class="nav-item" id="userNav" style="display: none;">
+                            <a class="nav-link" href="#" onclick="showPage('profile')">Profile</a>
+                        </li>
+                        <li class="nav-item" id="employerNav" style="display: none;">
+                            <a class="nav-link" href="#" onclick="showPage('employerDashboard')">Dashboard</a>
+                        </li>
+                        <li class="nav-item" id="adminNav" style="display: none;">
+                            <a class="nav-link" href="#" onclick="showPage('adminDashboard')">Admin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showPage('leaderboard')">Leaderboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link position-relative" href="#" onclick="showPage('notifications')">
+                                <i class="bi bi-bell"></i>
+                                <span class="notification-badge" id="notificationCount">3</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ms-3">
+                            <div class="user-info" id="userInfo">
+                                <a class="nav-link" href="#" onclick="showPage('login')">Login</a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Micro-Internship Portal. All rights reserved.</p>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div id="homePage" class="page-content">
+            <div class="row mb-4">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-3">Find Your Perfect Micro-Internship</h1>
+                    <p class="lead mb-4">Gain hands-on experience with short-term projects from top companies and
+                        faculty.</p>
+                    <div class="d-flex gap-3 mb-4">
+                        <button class="btn btn-primary-custom text-white" onclick="showPage('internships')">Browse
+                            Internships</button>
+                        <button class="btn btn-outline-primary-custom" onclick="showPage('register')">Get
+                            Started</button>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://picsum.photos/seed/internship/600/400.jpg" alt="Internship"
+                        class="img-fluid rounded-3 shadow">
+                </div>
+            </div>
+
+            <div class="row mb-5">
+                <div class="col-md-4 mb-4">
+                    <div class="dashboard-card text-center">
+                        <div class="mb-3">
+                            <i class="bi bi-people-fill" style="font-size: 3rem; color: var(--primary-color);"></i>
+                        </div>
+                        <h4>For Students</h4>
+                        <p>Build skills and gain experience with short-term projects that fit your schedule.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="dashboard-card text-center">
+                        <div class="mb-3">
+                            <i class="bi bi-building" style="font-size: 3rem; color: var(--primary-color);"></i>
+                        </div>
+                        <h4>For Employers</h4>
+                        <p>Find talented interns for specific tasks without long-term commitments.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="dashboard-card text-center">
+                        <div class="mb-3">
+                            <i class="bi bi-trophy-fill" style="font-size: 3rem; color: var(--primary-color);"></i>
+                        </div>
+                        <h4>Gamified Experience</h4>
+                        <p>Earn points, climb the leaderboard, and unlock achievements as you complete projects.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3 class="mb-4">Featured Internships</h3>
+                <div class="row" id="featuredInternships">
+                </div>
+            </div>
+        </div>
+
+        <div id="loginPage" class="page-content" style="display: none;">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="dashboard-card">
+                        <h3 class="text-center mb-4">Login to Your Account</h3>
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <label for="loginEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="loginEmail" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="loginPassword" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="loginPassword" required>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">Remember me</label>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary-custom text-white">Login</button>
+                            </div>
+                            <div class="text-center mt-3">
+                                <p>Don't have an account? <a href="#" onclick="showPage('register')">Register here</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="registerPage" class="page-content" style="display: none;">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="dashboard-card">
+                        <h3 class="text-center mb-4">Create Your Account</h3>
+                        <ul class="nav nav-tabs mb-4" id="registerTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="user-tab" data-bs-toggle="tab"
+                                    data-bs-target="#userRegister" type="button" role="tab">Student</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="employer-tab" data-bs-toggle="tab"
+                                    data-bs-target="#employerRegister" type="button" role="tab">Employer</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="registerTabContent">
+                            <div class="tab-pane fade show active" id="userRegister" role="tabpanel">
+                                <form id="userRegisterForm">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="userFirstName" class="form-label">First Name</label>
+                                            <input type="text" class="form-control" id="userFirstName" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="userLastName" class="form-label">Last Name</label>
+                                            <input type="text" class="form-control" id="userLastName" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="userEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="userEmail" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="userPassword" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="userPassword" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="userConfirmPassword" class="form-label">Confirm Password</label>
+                                        <input type="password" class="form-control" id="userConfirmPassword" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="userEducation" class="form-label">Education</label>
+                                        <input type="text" class="form-control" id="userEducation"
+                                            placeholder="e.g., Bachelor's in Computer Science">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="userSkills" class="form-label">Skills</label>
+                                        <input type="text" class="form-control" id="userSkills"
+                                            placeholder="e.g., JavaScript, Python, UI Design">
+                                    </div>
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-primary-custom text-white">Register as
+                                            Student</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="employerRegister" role="tabpanel">
+                                <form id="employerRegisterForm">
+                                    <div class="mb-3">
+                                        <label for="companyName" class="form-label">Company Name</label>
+                                        <input type="text" class="form-control" id="companyName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="companyEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="companyEmail" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="companyPassword" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="companyPassword" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="companyConfirmPassword" class="form-label">Confirm Password</label>
+                                        <input type="password" class="form-control" id="companyConfirmPassword"
+                                            required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="companyWebsite" class="form-label">Website</label>
+                                        <input type="url" class="form-control" id="companyWebsite">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="companyDescription" class="form-label">Company Description</label>
+                                        <textarea class="form-control" id="companyDescription" rows="3"></textarea>
+                                    </div>
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-primary-custom text-white">Register as
+                                            Employer</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="internshipsPage" class="page-content" style="display: none;">
+            <div class="dashboard-card">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <h2>Browse Internships</h2>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search internships..."
+                                id="searchInput">
+                            <button class="btn btn-primary-custom" type="button" id="searchBtn">Search</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <select class="form-select" id="categoryFilter">
+                            <option value="">All Categories</option>
+                            <option value="development">Development</option>
+                            <option value="design">Design</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="research">Research</option>
+                            <option value="writing">Writing</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" id="durationFilter">
+                            <option value="">All Durations</option>
+                            <option value="1-2 weeks">1-2 weeks</option>
+                            <option value="3-4 weeks">3-4 weeks</option>
+                            <option value="1-2 months">1-2 months</option>
+                            <option value="3+ months">3+ months</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" id="stipendFilter">
+                            <option value="">All Stipends</option>
+                            <option value="unpaid">Unpaid</option>
+                            <option value="0-5000">$0 - $5,000</option>
+                            <option value="5000-10000">$5,000 - $10,000</option>
+                            <option value="10000+">$10,000+</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" id="sortBy">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="stipend-high">Highest Stipend</option>
+                            <option value="stipend-low">Lowest Stipend</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row" id="internshipsList">
+                </div>
+
+                <div class="text-center mt-4">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <div id="profilePage" class="page-content" style="display: none;">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="dashboard-card text-center">
+                        <img src="https://picsum.photos/seed/user1/200/200.jpg" alt="Profile"
+                            class="rounded-circle mb-3" width="150" height="150">
+                        <h3 id="profileName">John Doe</h3>
+                        <p class="text-muted" id="profileEmail">john.doe@example.com</p>
+                        <div class="d-flex justify-content-center mb-3">
+                            <div class="text-center mx-3">
+                                <h5 id="profilePoints">850</h5>
+                                <small class="text-muted">Points</small>
+                            </div>
+                            <div class="text-center mx-3">
+                                <h5 id="profileRank">12</h5>
+                                <small class="text-muted">Rank</small>
+                            </div>
+                            <div class="text-center mx-3">
+                                <h5 id="profileCompleted">5</h5>
+                                <small class="text-muted">Completed</small>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary-custom w-100 text-white" onclick="showEditProfile()">Edit Profile</button>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <ul class="nav nav-tabs mb-4" id="profileTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="about-tab" data-bs-toggle="tab" data-bs-target="#about"
+                                type="button" role="tab">About</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="applications-tab" data-bs-toggle="tab"
+                                data-bs-target="#applications" type="button" role="tab">Applications</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews"
+                                type="button" role="tab">Reviews</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="achievements-tab" data-bs-toggle="tab"
+                                data-bs-target="#achievements" type="button" role="tab">Achievements</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="profileTabContent">
+                        <div class="tab-pane fade show active" id="about" role="tabpanel">
+                            <div class="dashboard-card">
+                                <h4 class="mb-3">About Me</h4>
+                                <p id="profileBio">I'm a passionate computer science student with a keen interest in web
+                                    development and machine learning. I love working on challenging projects that allow
+                                    me to apply my skills and learn new technologies.</p>
+                                <h5 class="mt-4 mb-3">Education</h5>
+                                <p id="profileEducation">Bachelor of Science in Computer Science, University of
+                                    Technology</p>
+                                <h5 class="mt-4 mb-3">Skills</h5>
+                                <div id="profileSkills">
+                                    <span class="badge bg-primary me-2 mb-2">JavaScript</span>
+                                    <span class="badge bg-primary me-2 mb-2">React</span>
+                                    <span class="badge bg-primary me-2 mb-2">Node.js</span>
+                                    <span class="badge bg-primary me-2 mb-2">Python</span>
+                                    <span class="badge bg-primary me-2 mb-2">Machine Learning</span>
+                                </div>
+                                <h5 class="mt-4 mb-3">Resume</h5>
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-file-earmark-pdf me-2"
+                                        style="font-size: 1.5rem; color: var(--danger-color);"></i>
+                                    <span>Resume.pdf</span>
+                                    <button class="btn btn-sm btn-outline-primary ms-auto">Download</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="applications" role="tabpanel">
+                            <div class="dashboard-card">
+                                <h4 class="mb-3">My Applications</h4>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Internship</th>
+                                                <th>Company</th>
+                                                <th>Applied Date</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="applicationsTable">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="reviews" role="tabpanel">
+                            <div class="dashboard-card">
+                                <h4 class="mb-3">Reviews Received</h4>
+                                <div id="reviewsList">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="achievements" role="tabpanel">
+                            <div class="dashboard-card">
+                                <h4 class="mb-3">Achievements</h4>
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <div class="text-center">
+                                            <div style="font-size: 3rem; color: gold;">🏆</div>
+                                            <h5>First Internship</h5>
+                                            <p class="text-muted">Completed your first internship</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="text-center">
+                                            <div style="font-size: 3rem; color: silver;">🥈</div>
+                                            <h5>5-Star Performer</h5>
+                                            <p class="text-muted">Received 5-star rating</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="text-center">
+                                            <div style="font-size: 3rem; color: #cd7f32;">🥉</div>
+                                            <h5>Quick Learner</h5>
+                                            <p class="text-muted">Completed 3 internships</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="text-center">
+                                            <div style="font-size: 3rem; color: var(--primary-color);">💎</div>
+                                            <h5>Top Performer</h5>
+                                            <p class="text-muted">Ranked in top 10</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="text-center">
+                                            <div style="font-size: 3rem; color: var(--accent-color);">🔥</div>
+                                            <h5>On Fire</h5>
+                                            <p class="text-muted">Completed 5 internships in a row</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="text-center">
+                                            <div style="font-size: 3rem; color: var(--success-color);">🌟</div>
+                                            <h5>All-Rounder</h5>
+                                            <p class="text-muted">Completed internships in 3 different categories</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="employerDashboardPage" class="page-content" style="display: none;">
+            <div class="dashboard-card">
+                <h2 class="mb-4">Employer Dashboard</h2>
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="dashboard-card text-center">
+                            <h3 id="activeInternshipsCount">5</h3>
+                            <p class="text-muted">Active Internships</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card text-center">
+                            <h3 id="totalApplicationsCount">23</h3>
+                            <p class="text-muted">Total Applications</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card text-center">
+                            <h3 id="activeInternsCount">8</h3>
+                            <p class="text-muted">Active Interns</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card text-center">
+                            <h3 id="completedProjectsCount">15</h3>
+                            <p class="text-muted">Completed Projects</p>
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="nav nav-tabs mb-4" id="employerTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="postInternship-tab" data-bs-toggle="tab"
+                            data-bs-target="#postInternship" type="button" role="tab">Post Internship</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="manageInternships-tab" data-bs-toggle="tab"
+                            data-bs-target="#manageInternships" type="button" role="tab">Manage Internships</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="applicants-tab" data-bs-toggle="tab" data-bs-target="#applicants"
+                            type="button" role="tab">Applicants</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="companyProfile-tab" data-bs-toggle="tab"
+                            data-bs-target="#companyProfile" type="button" role="tab">Company Profile</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="employerTabContent">
+                    <div class="tab-pane fade show active" id="postInternship" role="tabpanel">
+                        <div class="dashboard-card">
+                            <h4 class="mb-3">Post New Internship</h4>
+                            <form id="postInternshipForm">
+                                <div class="mb-3">
+                                    <label for="internshipTitle" class="form-label">Internship Title</label>
+                                    <input type="text" class="form-control" id="internshipTitle" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="internshipCategory" class="form-label">Category</label>
+                                    <select class="form-select" id="internshipCategory" required>
+                                        <option value="">Select Category</option>
+                                        <option value="development">Development</option>
+                                        <option value="design">Design</option>
+                                        <option value="marketing">Marketing</option>
+                                        <option value="research">Research</option>
+                                        <option value="writing">Writing</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="internshipDescription" class="form-label">Description</label>
+                                    <textarea class="form-control" id="internshipDescription" rows="5"
+                                        required></textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="internshipDuration" class="form-label">Duration</label>
+                                        <select class="form-select" id="internshipDuration" required>
+                                            <option value="">Select Duration</option>
+                                            <option value="1-2 weeks">1-2 weeks</option>
+                                            <option value="3-4 weeks">3-4 weeks</option>
+                                            <option value="1-2 months">1-2 months</option>
+                                            <option value="3+ months">3+ months</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="internshipStipend" class="form-label">Stipend ($)</label>
+                                        <input type="number" class="form-control" id="internshipStipend" min="0"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="internshipSkills" class="form-label">Required Skills</label>
+                                    <input type="text" class="form-control" id="internshipSkills"
+                                        placeholder="e.g., JavaScript, React, Node.js">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="internshipDeadline" class="form-label">Application Deadline</label>
+                                    <input type="date" class="form-control" id="internshipDeadline" required>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary-custom">Post Internship</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="manageInternships" role="tabpanel">
+                        <div class="dashboard-card">
+                            <h4 class="mb-3">Manage Internships</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Category</th>
+                                            <th>Posted Date</th>
+                                            <th>Applications</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="manageInternshipsTable">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="applicants" role="tabpanel">
+                        <div class="dashboard-card">
+                            <h4 class="mb-3">Recent Applicants</h4>
+                            <div id="applicantsList">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="companyProfile" role="tabpanel">
+                        <div class="dashboard-card">
+                            <h4 class="mb-3">Company Profile</h4>
+                            <form id="companyProfileForm">
+                                <div class="mb-3">
+                                    <label for="profileCompanyName" class="form-label">Company Name</label>
+                                    <input type="text" class="form-control" id="profileCompanyName"
+                                        value="Tech Solutions Inc.">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="profileCompanyWebsite" class="form-label">Website</label>
+                                    <input type="url" class="form-control" id="profileCompanyWebsite"
+                                        value="https://techsolutions.com">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="profileCompanyEmail" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="profileCompanyEmail"
+                                        value="contact@techsolutions.com">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="profileCompanyDescription" class="form-label">Description</label>
+                                    <textarea class="form-control" id="profileCompanyDescription"
+                                        rows="4">We are a leading technology company specializing in innovative software solutions for businesses worldwide.</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="profileCompanySize" class="form-label">Company Size</label>
+                                    <select class="form-select" id="profileCompanySize">
+                                        <option value="1-10">1-10</option>
+                                        <option value="11-50" selected>11-50</option>
+                                        <option value="51-200">51-200</option>
+                                        <option value="201-500">201-500</option>
+                                        <option value="500+">500+</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="profileCompanyLocation" class="form-label">Location</label>
+                                    <input type="text" class="form-control" id="profileCompanyLocation"
+                                        value="San Francisco, CA">
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary-custom">Update Profile</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="adminDashboardPage" class="page-content" style="display: none;">
+            <div class="dashboard-card">
+                <h2 class="mb-4">Admin Dashboard</h2>
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="dashboard-card text-center">
+                            <h3 id="totalUsersCount">1,245</h3>
+                            <p class="text-muted">Total Users</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card text-center">
+                            <h3 id="totalEmployersCount">156</h3>
+                            <p class="text-muted">Total Employers</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card text-center">
+                            <h3 id="totalInternshipsCount">423</h3>
+                            <p class="text-muted">Total Internships</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="dashboard-card text-center">
+                            <h3 id="pendingVerificationsCount">12</h3>
+                            <p class="text-muted">Pending Verifications</p>
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="nav nav-tabs mb-4" id="adminTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="verifyEmployers-tab" data-bs-toggle="tab"
+                            data-bs-target="#verifyEmployers" type="button" role="tab">Verify Employers</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="manageUsers-tab" data-bs-toggle="tab" data-bs-target="#manageUsers"
+                            type="button" role="tab">Manage Users</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="manageInternshipsAdmin-tab" data-bs-toggle="tab"
+                            data-bs-target="#manageInternshipsAdmin" type="button" role="tab">Manage
+                            Internships</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="reports-tab" data-bs-toggle="tab" data-bs-target="#reports"
+                            type="button" role="tab">Reports</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="adminTabContent">
+                    <div class="tab-pane fade show active" id="verifyEmployers" role="tabpanel">
+                        <div class="dashboard-card">
+                            <h4 class="mb-3">Employer Verification Requests</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Company Name</th>
+                                            <th>Email</th>
+                                            <th>Website</th>
+                                            <th>Registration Date</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="verifyEmployersTable">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="manageUsers" role="tabpanel">
+                        <div class="dashboard-card">
+                            <h4 class="mb-3">Manage Users</h4>
+                            <div class="mb-3">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search users..."
+                                        id="adminSearchUsers">
+                                    <button class="btn btn-primary-custom text-white" type="button">Search</button>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Registration Date</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="manageUsersTable">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="manageInternshipsAdmin" role="tabpanel">
+                        <div class="dashboard-card">
+                            <h4 class="mb-3">Manage Internships</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Company</th>
+                                            <th>Category</th>
+                                            <th>Posted Date</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="manageInternshipsAdminTable">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="reports" role="tabpanel">
+                        <div class="dashboard-card">
+                            <h4 class="mb-3">System Reports</h4>
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <h5>User Registration Trend</h5>
+                                    <canvas id="userRegistrationChart" width="400" height="200"></canvas>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Internship Categories</h5>
+                                    <canvas id="internshipCategoriesChart" width="400" height="200"></canvas>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Top Performing Users</h5>
+                                    <ol id="topPerformersList">
+                                    </ol>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Recent Activities</h5>
+                                    <ul id="recentActivitiesList">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="leaderboardPage" class="page-content" style="display: none;">
+            <div class="dashboard-card">
+                <h2 class="mb-4">Leaderboard</h2>
+                <ul class="nav nav-tabs mb-4" id="leaderboardTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="topUsers-tab" data-bs-toggle="tab"
+                            data-bs-target="#topUsers" type="button" role="tab">Top Users</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="topEmployers-tab" data-bs-toggle="tab"
+                            data-bs-target="#topEmployers" type="button" role="tab">Top Employers</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="leaderboardTabContent">
+                    <div class="tab-pane fade show active" id="topUsers" role="tabpanel">
+                        <div id="topUsersList">
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="topEmployers" role="tabpanel">
+                        <div id="topEmployersList">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="notificationsPage" class="page-content" style="display: none;">
+            <div class="dashboard-card">
+                <h2 class="mb-4">Notifications</h2>
+                <div id="notificationsList">
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="internshipDetailsModal" tabindex="-1" aria-labelledby="internshipDetailsModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="internshipDetailsModalLabel">Internship Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="internshipDetailsContent">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary-custom text-white" id="applyInternshipBtn">Apply Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="applicationModal" tabindex="-1" aria-labelledby="applicationModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="applicationModalLabel">Apply for Internship</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="applicationForm">
+                            <div class="mb-3">
+                                <label for="coverLetter" class="form-label">Cover Letter</label>
+                                <textarea class="form-control" id="coverLetter" rows="5" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="availability" class="form-label">Availability</label>
+                                <input type="text" class="form-control" id="availability"
+                                    placeholder="e.g., Available immediately, 20 hours per week" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="expectedStart" class="form-label">Expected Start Date</label>
+                                <input type="date" class="form-control" id="expectedStart" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary-custom" id="submitApplicationBtn">Submit
+                            Application</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editProfileForm">
+                            <div class="mb-3">
+                                <label for="editBio" class="form-label">Bio</label>
+                                <textarea class="form-control" id="editBio" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editEducation" class="form-label">Education</label>
+                                <input type="text" class="form-control" id="editEducation">
+                            </div>
+                            <div class="mb-3">
+                                <label for="editSkills" class="form-label">Skills</label>
+                                <input type="text" class="form-control" id="editSkills">
+                            </div>
+                            <div class="mb-3">
+                                <label for="editResume" class="form-label">Resume</label>
+                                <input type="file" class="form-control" id="editResume">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary-custom" id="saveProfileBtn">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="applicantDetailsModal" tabindex="-1" aria-labelledby="applicantDetailsModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="applicantDetailsModalLabel">Applicant Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="applicantDetailsContent">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" id="rejectApplicantBtn">Reject</button>
+                        <button type="button" class="btn btn-success" id="acceptApplicantBtn">Accept</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reviewModalLabel">Leave a Review</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="reviewForm">
+                            <div class="mb-3">
+                                <label for="reviewRating" class="form-label">Rating</label>
+                                <div class="d-flex">
+                                    <i class="bi bi-star-fill rating-star" data-rating="1"></i>
+                                    <i class="bi bi-star rating-star" data-rating="2"></i>
+                                    <i class="bi bi-star rating-star" data-rating="3"></i>
+                                    <i class="bi bi-star rating-star" data-rating="4"></i>
+                                    <i class="bi bi-star rating-star" data-rating="5"></i>
+                                </div>
+                                <input type="hidden" id="reviewRating" value="0">
+                            </div>
+                            <div class="mb-3">
+                                <label for="reviewFeedback" class="form-label">Feedback</label>
+                                <textarea class="form-control" id="reviewFeedback" rows="4" required></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary-custom" id="submitReviewBtn">Submit Review</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Micro-Internship Portal</h5>
+                    <p>Connecting students with short-term internship opportunities for skill development and career
+                        growth.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <div class="footer-links">
+                        <a href="#" onclick="showPage('home')">Home</a>
+                        <a href="#" onclick="showPage('internships')">Internships</a>
+                        <a href="#" onclick="showPage('register')">Register</a>
+                        <a href="#" onclick="showPage('leaderboard')">Leaderboard</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <p><i class="bi bi-envelope me-2"></i>info@pronab.tech</p>
+                    <p><i class="bi bi-phone me-2"></i>+8801799238766</p>
+                    <div class="mt-3">
+                        <a href="https://www.facebook.com/pronabsg" target="_blank" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.facebook.com/pronabsg" target="_blank" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="https://linkedin.com/in/pronabsen/" target="_blank" class="text-white me-3"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://www.instagram.com/pronabsg" target="_blank" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+                        <a href="https://github.com/pronabsen" target="_blank" class="text-white"><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-white">
+            <div class="text-center">
+                <p>&copy; 2025 Micro-Internship Portal. All rights reserved by Pronab Sen Gupta.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Modal Container -->
-    <div id="modalContainer"></div>
-
-    <script src="js/main.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/internships.js"></script>
-    <script src="js/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+  
 </body>
+
 </html>
